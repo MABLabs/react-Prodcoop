@@ -1,0 +1,11 @@
+
+var version = {
+		"name":      "<%= package.name %>",
+		"buildTime": "<%= currentTime.toISOString().split('T')[1] %>",
+		"buildDate": "<%= currentTime.toISOString().split('T')[0] %>",
+		"version":   "<%= package.version %>",
+		"NodeJS":    "<%= process.version %>",
+		"PkgReact":     "<%= package.dependencies.react %>",
+		"PkgWebPack":   "<%= package.devDependencies.webpack %>",
+    "WebPack":   "<%= extras.webpack %>"
+	}
