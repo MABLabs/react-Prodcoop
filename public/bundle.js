@@ -37245,8 +37245,8 @@ var App = function (_Component) {
 
       _axios2.default.get('/api/current_parms/').then(function (response) {
         _this2.setState({ 'myData': response.data, 'show': true });
-        console.log('App.js myData = ', _this2.state.myData);
-        console.log('show = ', _this2.state.show);
+        //console.log('App.js myData = ', this.state.myData);
+        //console.log('show = ', this.state.show);
       }).catch(function (error) {
         _this2.setState({ 'myData': error.message });console.log('Error in App,js on parm call = ', _this2.state.myData);
       });
@@ -38923,7 +38923,7 @@ var StatusForm = function (_Component) {
 
          console.log('status props = ', this.props);
          myData = this.props.myData;
-         console.log('myData = ', myData);
+         //console.log('myData = ', myData);
          _axios2.default.get('/api/current_status/').then(function (response) {
             console.log(response.data);
             if (response.data.over) _this2.setState({ 'overStatus': 'green-led' });else _this2.setState({ 'overStatus': 'red-led' });

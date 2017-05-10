@@ -38,8 +38,8 @@ class App extends Component {
      axios.get('/api/current_parms/')
     .then((response) => { 
         this.setState({'myData': response.data, 'show': true});
-        console.log('App.js myData = ', this.state.myData);
-        console.log('show = ', this.state.show);
+        //console.log('App.js myData = ', this.state.myData);
+        //console.log('show = ', this.state.show);
      })
      .catch((error)   => { this.setState({'myData': error.message}); console.log('Error in App,js on parm call = ', this.state.myData) });
   }

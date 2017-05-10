@@ -1,7 +1,7 @@
 
 var version = {
 		"name":      "react-Prodcoop",
-		"buildTime": "20:15:42.482Z",
+		"buildTime": "20:21:47.823Z",
 		"buildDate": "2017-05-10",
 		"version":   "1.0.0",
 		"NodeJS":    "v6.10.0",
