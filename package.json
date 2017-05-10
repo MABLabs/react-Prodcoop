@@ -1,7 +1,7 @@
 {
-  "name": "React-PreBuild",
+  "name": "react-Prodcoop",
   "version": "1.0.0",
-  "description": "A prebuilt node and react environment making use of webpack",
+  "description": "A react chicken coop application",
   "main": "server.js",
   "_comment": "example of a comment",
   "babel": {
@@ -14,13 +14,23 @@
   },
   "repository": {},
   "dependencies": {
+    "axios": "^0.15.3",
     "babel-polyfill": "^6.23.0",
     "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "body-parser": "^1.17.1",
+    "ds18b20-raspi": "^0.2.5",
     "json-loader": "^0.5.4",
+    "moment": "^2.18.0",
     "react": "^15.4.4",
     "react-autobind": "^1.0.6",
-    "react-dom": "^15.5.4"
+    "react-clock": "^1.0.5",
+    "react-dom": "^15.5.4",
+    "react-flexible-switch": "^0.6.0",
+    "react-time": "^4.2.0",
+    "rpio": "^0.9.16",
+    "self-reload-json": "^0.3.0",
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "babel-core": "6.24.1",
@@ -50,6 +60,6 @@
     "bundle": "webpack",
     "start-prod": "cd server; sudo nodemon server.js"
   },
-  "author": "Author <author@fda.com>",
-  "license": "DHHS/FDA/NCTR"
+  "author": "Michael Beaudoin <Michael.Beaudoin@mablabs.com>",
+  "license": "MAB Labs"
 }

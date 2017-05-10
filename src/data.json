@@ -1,0 +1,12 @@
+{
+	"latitude": 34.63416667,
+	"longitude": -92.31388889,
+	"dooropenOffset": -20,
+	"doorcloseOffset": 40,
+	"lightonOffset": 0,
+	"lightoffOffset": 30,
+	"heatOn": 35,
+	"heatOff": 45,
+	"fanOn": 80,
+	"fanOff": 75
+}
