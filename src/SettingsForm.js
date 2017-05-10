@@ -101,7 +101,7 @@ saveData() {
 
    //Update props for sibling
    this.props.myData.latitude = parseFloat(this.state.latitude);
-   this.props.myData.longitude = parseIFloat(this.state.longitude);
+   this.props.myData.longitude = parseFloat(this.state.longitude);
    this.props.myData.dooropenOffset = parseInt(this.state.dooropenOffset);
    this.props.myData.doorcloseOffset = parseInt(this.state.doorcloseOffset);
    this.props.myData.lightonOffset = parseInt(this.state.lightonOffset);
