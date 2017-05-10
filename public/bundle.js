@@ -38681,7 +38681,7 @@ var SettingsForm = function (_Component) {
               'Door Open Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'dooropen', value: this.state.dooropen }),
+            _react2.default.createElement('input', { size: '3', name: 'dooropen', value: this.state.dooropen, onChange: function onChange() {} }),
             ' ',
             vs('dooropen'),
             'min',

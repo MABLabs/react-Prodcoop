@@ -111,7 +111,7 @@ return <div>
            <div className="App-entry">
            <label>Latitude:</label> <input  size="12" name="latitude" value={this.state.latitude} /> {vs('latitude')}<br /><br />
            <label>Longitude:</label> <input  size="12" name="longitude" value={this.state.longitude} /> {vs('longitude')}<br /><br />
-           <label>Door Open Offset:</label> <input  size="3" name="dooropen" value={this.state.dooropen} onChange={()=>{}} /> {vs('dooropen')}min
+           <label>Door Open Offset:</label> <input  size="3" name="dooropen" value={this.state.dooropen} /> {vs('dooropen')}min
            <label>Door Close Offset:</label> <input  size="3" name="doorclose" value={this.state.doorclose} /> {vs('doorclose')}min<br /><br />
            <label>Light On Offset:</label> <input  size="3" name="lighton" value={this.state.lighton} /> {vs('lighton')}min
            <label>Light Off Offset:</label> <input  size="3" name="lightoff" value={this.state.lightoff} /> {vs('lightoff')}min<br /><br />

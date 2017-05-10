@@ -73,8 +73,7 @@ class App extends Component {
           <option value="overide">Coop Override</option>
         </select>
         <hr />
-        {/*this.state.show === true ? <div> {activeForm} </div> : <div><b>Loading Data...</b></div>*/}
-{activeForm}
+        {this.state.show === true ? <div> {activeForm} </div> : <div><b>Loading Data...</b></div>}
       </div>
     );
   }
