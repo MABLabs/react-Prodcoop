@@ -94,7 +94,7 @@ saveData() {
 //   var instance = axios.create({
 //       baseURL: 'http://localhost:8080/',
 //       timeout: 1000,
-//       headers: { "Access-Control-Allow-Origin": "*" }
+//       headers: { "Access-Control-Allow-Origin": "*" } 
 //   });
       
    axios.get(url);
