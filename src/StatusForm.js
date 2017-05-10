@@ -59,9 +59,9 @@ class StatusForm extends Component {
 
     componentDidMount() {
 
-      //console.log('props = ', this.props);
+      console.log('status props = ', this.props);
       myData = this.props.myData;
-      //console.log('myData = ', myData);
+      console.log('myData = ', myData);
       axios.get('/api/current_status/')
       .then((response) => {
         console.log(response.data);

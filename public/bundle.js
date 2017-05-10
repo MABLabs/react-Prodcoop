@@ -38546,6 +38546,7 @@ var SettingsForm = function (_Component) {
 
     (0, _reactAutobind2.default)(_this);
 
+    _this.state = _this.props.myData;
     /*      this.state = 
           {
             latitude: myData.latitude,
@@ -38558,21 +38559,27 @@ var SettingsForm = function (_Component) {
             heatoff: myData.heatOff,
             fanon: myData.fanOn,
             fanoff: myData.fanOff
+          };
+          this.state = {
+            latitude: 0,
+            longitude: 0,
+            dooropenOffset: 0,
+            doorcloseOffset: 0,
+            lightonOffset: 0,
+            lightoffOffset: 0,
+            heatOn: 0,
+            heatOff: 0,
+            fanOn: 0,
+            fanOff: 0
           };*/
-    _this.state = {
-      latitude: 0,
-      longitude: 0,
-      dooropenOffset: 0,
-      doorcloseOffset: 0,
-      lightonOffset: 0,
-      lightoffOffset: 0,
-      heatOn: 0,
-      heatOff: 0,
-      fanOn: 0,
-      fanOff: 0
-    };
     return _this;
   }
+  /*
+  componentDidMount() {
+    this.state = this.props.myData;
+  }
+  */
+
 
   _createClass(SettingsForm, [{
     key: 'checkValid',
@@ -38634,13 +38641,23 @@ var SettingsForm = function (_Component) {
       //   });
 
       _axios2.default.get(url);
+
+      //Update props for sibling
+      this.props.myData.latitude = parseFloat(this.state.latitude);
+      this.props.myData.longitude = parseIFloat(this.state.longitude);
+      this.props.myData.dooropenOffset = parseInt(this.state.dooropenOffset);
+      this.props.myData.doorcloseOffset = parseInt(this.state.doorcloseOffset);
+      this.props.myData.lightonOffset = parseInt(this.state.lightonOffset);
+      this.props.myData.lightoffOffset = parseInt(this.state.lightoffOffset);
+      this.props.myData.heatOn = parseInt(this.state.heatOn);
+      this.props.myData.heatOff = parseInt(this.state.heatOff);
+      this.props.myData.fanOn = parseInt(this.state.fanOn);
+      this.props.myData.fanOff = parseInt(this.state.fanOff);
+      //console.log('Props = ', this.props.myData);
     }
   }, {
     key: 'render',
     value: function render() {
-
-      this.state = this.props.myData;
-      //this.setState('dooropen': this.props.myData.dooropen);
 
       var red = { color: 'rgb(255,0,0)', fontSize: '1.6em' };
       var valid = this.checkValid();
@@ -38652,7 +38669,7 @@ var SettingsForm = function (_Component) {
         );
       };
 
-      console.log('render state = ', this.state);
+      //console.log('render state = ', this.state);
 
       return _react2.default.createElement(
         'div',
@@ -38696,7 +38713,7 @@ var SettingsForm = function (_Component) {
               'Door Open Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'dooropen', value: this.state.dooropenOffset }),
+            _react2.default.createElement('input', { size: '3', name: 'dooropenOffset', value: this.state.dooropenOffset }),
             ' ',
             vs('dooropen'),
             'min',
@@ -38706,7 +38723,7 @@ var SettingsForm = function (_Component) {
               'Door Close Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'doorclose', value: this.state.doorcloseOffset }),
+            _react2.default.createElement('input', { size: '3', name: 'doorcloseOffset', value: this.state.doorcloseOffset }),
             ' ',
             vs('doorclose'),
             'min',
@@ -38718,7 +38735,7 @@ var SettingsForm = function (_Component) {
               'Light On Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'lighton', value: this.state.lightonOffset }),
+            _react2.default.createElement('input', { size: '3', name: 'lightonOffset', value: this.state.lightonOffset }),
             ' ',
             vs('lighton'),
             'min',
@@ -38728,7 +38745,7 @@ var SettingsForm = function (_Component) {
               'Light Off Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'lightoff', value: this.state.lightoffOffset }),
+            _react2.default.createElement('input', { size: '3', name: 'lightoffOffset', value: this.state.lightoffOffset }),
             ' ',
             vs('lightoff'),
             'min',
@@ -38740,7 +38757,7 @@ var SettingsForm = function (_Component) {
               'Heat On Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'heaton', value: this.state.heatOn }),
+            _react2.default.createElement('input', { size: '3', name: 'heatOn', value: this.state.heatOn }),
             ' ',
             vs('heaton'),
             'deg',
@@ -38750,7 +38767,7 @@ var SettingsForm = function (_Component) {
               'Heat Off Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'heatoff', value: this.state.heatOff }),
+            _react2.default.createElement('input', { size: '3', name: 'heatOff', value: this.state.heatOff }),
             ' ',
             vs('heatoff'),
             'deg',
@@ -38762,7 +38779,7 @@ var SettingsForm = function (_Component) {
               'Fan On Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'fanon', value: this.state.fanOn }),
+            _react2.default.createElement('input', { size: '3', name: 'fanOn', value: this.state.fanOn }),
             ' ',
             vs('fanon'),
             'deg',
@@ -38772,7 +38789,7 @@ var SettingsForm = function (_Component) {
               'Fan Off Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'fanoff', value: this.state.fanOff }),
+            _react2.default.createElement('input', { size: '3', name: 'fanOff', value: this.state.fanOff }),
             ' ',
             vs('fanoff'),
             'deg',
@@ -38904,9 +38921,9 @@ var StatusForm = function (_Component) {
       value: function componentDidMount() {
          var _this2 = this;
 
-         //console.log('props = ', this.props);
+         console.log('status props = ', this.props);
          myData = this.props.myData;
-         //console.log('myData = ', myData);
+         console.log('myData = ', myData);
          _axios2.default.get('/api/current_status/').then(function (response) {
             console.log(response.data);
             if (response.data.over) _this2.setState({ 'overStatus': 'green-led' });else _this2.setState({ 'overStatus': 'red-led' });

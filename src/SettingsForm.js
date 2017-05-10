@@ -10,6 +10,7 @@ class SettingsForm extends Component {
 
       autoBind(this);
 
+       this.state = this.props.myData;
 /*      this.state = 
       {
         latitude: myData.latitude,
@@ -22,7 +23,7 @@ class SettingsForm extends Component {
         heatoff: myData.heatOff,
         fanon: myData.fanOn,
         fanoff: myData.fanOff
-      };*/
+      };
       this.state = {
         latitude: 0,
         longitude: 0,
@@ -34,9 +35,13 @@ class SettingsForm extends Component {
         heatOff: 0,
         fanOn: 0,
         fanOff: 0
-      };
+      };*/
 }
-
+/*
+componentDidMount() {
+  this.state = this.props.myData;
+}
+*/
 checkValid() {
 //        var sPat = /^[A-Za-z ]*$/;
 //        var siPat = /^[A-Za-z0-9//]*$/;
@@ -93,18 +98,28 @@ saveData() {
 //   });
       
    axios.get(url);
+
+   //Update props for sibling
+   this.props.myData.latitude = parseFloat(this.state.latitude);
+   this.props.myData.longitude = parseIFloat(this.state.longitude);
+   this.props.myData.dooropenOffset = parseInt(this.state.dooropenOffset);
+   this.props.myData.doorcloseOffset = parseInt(this.state.doorcloseOffset);
+   this.props.myData.lightonOffset = parseInt(this.state.lightonOffset);
+   this.props.myData.lightoffOffset = parseInt(this.state.lightoffOffset);
+   this.props.myData.heatOn = parseInt(this.state.heatOn);
+   this.props.myData.heatOff = parseInt(this.state.heatOff);
+   this.props.myData.fanOn = parseInt(this.state.fanOn);
+   this.props.myData.fanOff = parseInt(this.state.fanOff);
+   //console.log('Props = ', this.props.myData);
 }
 
 render() {
-
-this.state = this.props.myData;
-//this.setState('dooropen': this.props.myData.dooropen);
 
 var red = {color: 'rgb(255,0,0)', fontSize: '1.6em'};
 var valid = this.checkValid();
 var vs = (name) => (valid[name].length === 0) ? <span></span>: <span style={red} title={valid[name]}>*</span>;
 
-console.log('render state = ', this.state);
+//console.log('render state = ', this.state);
 
 return <div>
          <h1>Coop Settings</h1>
@@ -112,14 +127,14 @@ return <div>
            <div className="App-entry">
            <label>Latitude:</label> <input  size="12" name="latitude" value={this.state.latitude} /> {vs('latitude')}<br /><br />
            <label>Longitude:</label> <input  size="12" name="longitude" value={this.state.longitude} /> {vs('longitude')}<br /><br />
-           <label>Door Open Offset:</label> <input  size="3" name="dooropen" value={this.state.dooropenOffset} /> {vs('dooropen')}min
-           <label>Door Close Offset:</label> <input  size="3" name="doorclose" value={this.state.doorcloseOffset} /> {vs('doorclose')}min<br /><br />
-           <label>Light On Offset:</label> <input  size="3" name="lighton" value={this.state.lightonOffset} /> {vs('lighton')}min
-           <label>Light Off Offset:</label> <input  size="3" name="lightoff" value={this.state.lightoffOffset} /> {vs('lightoff')}min<br /><br />
-           <label>Heat On Temperature:</label> <input  size="3" name="heaton" value={this.state.heatOn} /> {vs('heaton')}deg
-           <label>Heat Off Temperature:</label> <input  size="3" name="heatoff" value={this.state.heatOff} /> {vs('heatoff')}deg<br /><br />
-           <label>Fan On Temperature:</label> <input  size="3" name="fanon" value={this.state.fanOn} /> {vs('fanon')}deg
-           <label>Fan Off Temperature:</label> <input  size="3" name="fanoff" value={this.state.fanOff} /> {vs('fanoff')}deg<br /><br />
+           <label>Door Open Offset:</label> <input  size="3" name="dooropenOffset" value={this.state.dooropenOffset} /> {vs('dooropen')}min
+           <label>Door Close Offset:</label> <input  size="3" name="doorcloseOffset" value={this.state.doorcloseOffset} /> {vs('doorclose')}min<br /><br />
+           <label>Light On Offset:</label> <input  size="3" name="lightonOffset" value={this.state.lightonOffset} /> {vs('lighton')}min
+           <label>Light Off Offset:</label> <input  size="3" name="lightoffOffset" value={this.state.lightoffOffset} /> {vs('lightoff')}min<br /><br />
+           <label>Heat On Temperature:</label> <input  size="3" name="heatOn" value={this.state.heatOn} /> {vs('heaton')}deg
+           <label>Heat Off Temperature:</label> <input  size="3" name="heatOff" value={this.state.heatOff} /> {vs('heatoff')}deg<br /><br />
+           <label>Fan On Temperature:</label> <input  size="3" name="fanOn" value={this.state.fanOn} /> {vs('fanon')}deg
+           <label>Fan Off Temperature:</label> <input  size="3" name="fanOff" value={this.state.fanOff} /> {vs('fanoff')}deg<br /><br />
            </div>
          <button type="button" onClick={this.saveData}>Save and Update</button>&nbsp;
          </div>
