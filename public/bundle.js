@@ -37316,7 +37316,21 @@ var App = function (_Component) {
           )
         ),
         _react2.default.createElement('hr', null),
-        activeForm
+        this.state.show === true ? _react2.default.createElement(
+          'div',
+          null,
+          ' ',
+          activeForm,
+          ' '
+        ) : _react2.default.createElement(
+          'div',
+          null,
+          _react2.default.createElement(
+            'b',
+            null,
+            'Loading Data...'
+          )
+        )
       );
     }
   }]);
@@ -38548,14 +38562,14 @@ var SettingsForm = function (_Component) {
     _this.state = {
       latitude: 0,
       longitude: 0,
-      dooropen: 0,
-      doorclose: 0,
-      lighton: 0,
-      lightoff: 0,
-      heaton: 0,
-      heatoff: 0,
-      fanon: 0,
-      fanoff: 0
+      dooropenOffset: 0,
+      doorcloseOffset: 0,
+      lightonOffset: 0,
+      lightoffOffset: 0,
+      heatOn: 0,
+      heatOff: 0,
+      fanOn: 0,
+      fanOff: 0
     };
     return _this;
   }
@@ -38571,14 +38585,14 @@ var SettingsForm = function (_Component) {
       var valid = {};
       valid.latitude = iPat.test(this.state.latitude) ? '' : 'bad latitude - number only';
       valid.longitude = iPat.test(this.state.longitude) ? '' : 'bad longitude - number only';
-      valid.dooropen = iPat.test(this.state.dooropen) ? '' : 'bad door open - number only';
-      valid.doorclose = iPat.test(this.state.doorclose) ? '' : 'bad door close - number only';
-      valid.lighton = iPat.test(this.state.lighton) ? '' : 'bad light on - number only';
-      valid.lightoff = iPat.test(this.state.lightoff) ? '' : 'bad light off - number only';
-      valid.heaton = iPat.test(this.state.heaton) ? '' : 'bad heat on - number only';
-      valid.heatoff = iPat.test(this.state.heatoff) ? '' : 'bad heat off - number only';
-      valid.fanon = iPat.test(this.state.fanon) ? '' : 'bad fan on - number only';
-      valid.fanoff = iPat.test(this.state.fanoff) ? '' : 'bad fan off - number only';
+      valid.dooropen = iPat.test(this.state.dooropenOffset) ? '' : 'bad door open - number only';
+      valid.doorclose = iPat.test(this.state.doorcloseOffset) ? '' : 'bad door close - number only';
+      valid.lighton = iPat.test(this.state.lightonOffset) ? '' : 'bad light on - number only';
+      valid.lightoff = iPat.test(this.state.lightoffOffset) ? '' : 'bad light off - number only';
+      valid.heaton = iPat.test(this.state.heatOn) ? '' : 'bad heat on - number only';
+      valid.heatoff = iPat.test(this.state.heatOff) ? '' : 'bad heat off - number only';
+      valid.fanon = iPat.test(this.state.fanOn) ? '' : 'bad fan on - number only';
+      valid.fanoff = iPat.test(this.state.fanOff) ? '' : 'bad fan off - number only';
 
       return valid;
     }
@@ -38600,14 +38614,14 @@ var SettingsForm = function (_Component) {
       //   const [latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff] = [...this.state];
       var latitude = this.state.latitude,
           longitude = this.state.longitude,
-          dooropen = this.state.dooropen,
-          doorclose = this.state.doorclose,
-          lighton = this.state.lighton,
-          lightoff = this.state.lightoff,
-          heaton = this.state.heaton,
-          heatoff = this.state.heatoff,
-          fanon = this.state.fanon,
-          fanoff = this.state.fanoff;
+          dooropen = this.state.dooropenOffset,
+          doorclose = this.state.doorcloseOffset,
+          lighton = this.state.lightonOffset,
+          lightoff = this.state.lightoffOffset,
+          heaton = this.state.heatOn,
+          heatoff = this.state.heatOff,
+          fanon = this.state.fanOn,
+          fanoff = this.state.fanOff;
 
       //   var url = `/api/myData/${this.state.latitude}/${this.state.longitude}/${this.state.dooropenOffset}/${this.state.doorcloseOffset}/${this.state.lightonOffset}/${this.state.lightoffOffset}/${this.state.heatOn}/${this.state.heatOff}/${this.state.fanOn}/${this.state.fanOff}`;
       var url = '/api/myData/' + latitude + '/' + longitude + '/' + dooropen + '/' + doorclose + '/' + lighton + '/' + lightoff + '/' + heaton + '/' + heatoff + '/' + fanon + '/' + fanoff;
@@ -38626,6 +38640,7 @@ var SettingsForm = function (_Component) {
     value: function render() {
 
       this.state = this.props.myData;
+      //this.setState('dooropen': this.props.myData.dooropen);
 
       var red = { color: 'rgb(255,0,0)', fontSize: '1.6em' };
       var valid = this.checkValid();
@@ -38681,7 +38696,7 @@ var SettingsForm = function (_Component) {
               'Door Open Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'dooropen', value: this.state.dooropen, onChange: function onChange() {} }),
+            _react2.default.createElement('input', { size: '3', name: 'dooropen', value: this.state.dooropenOffset }),
             ' ',
             vs('dooropen'),
             'min',
@@ -38691,7 +38706,7 @@ var SettingsForm = function (_Component) {
               'Door Close Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'doorclose', value: this.state.doorclose }),
+            _react2.default.createElement('input', { size: '3', name: 'doorclose', value: this.state.doorcloseOffset }),
             ' ',
             vs('doorclose'),
             'min',
@@ -38703,7 +38718,7 @@ var SettingsForm = function (_Component) {
               'Light On Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'lighton', value: this.state.lighton }),
+            _react2.default.createElement('input', { size: '3', name: 'lighton', value: this.state.lightonOffset }),
             ' ',
             vs('lighton'),
             'min',
@@ -38713,7 +38728,7 @@ var SettingsForm = function (_Component) {
               'Light Off Offset:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'lightoff', value: this.state.lightoff }),
+            _react2.default.createElement('input', { size: '3', name: 'lightoff', value: this.state.lightoffOffset }),
             ' ',
             vs('lightoff'),
             'min',
@@ -38725,7 +38740,7 @@ var SettingsForm = function (_Component) {
               'Heat On Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'heaton', value: this.state.heaton }),
+            _react2.default.createElement('input', { size: '3', name: 'heaton', value: this.state.heatOn }),
             ' ',
             vs('heaton'),
             'deg',
@@ -38735,7 +38750,7 @@ var SettingsForm = function (_Component) {
               'Heat Off Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'heatoff', value: this.state.heatoff }),
+            _react2.default.createElement('input', { size: '3', name: 'heatoff', value: this.state.heatOff }),
             ' ',
             vs('heatoff'),
             'deg',
@@ -38747,7 +38762,7 @@ var SettingsForm = function (_Component) {
               'Fan On Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'fanon', value: this.state.fanon }),
+            _react2.default.createElement('input', { size: '3', name: 'fanon', value: this.state.fanOn }),
             ' ',
             vs('fanon'),
             'deg',
@@ -38757,7 +38772,7 @@ var SettingsForm = function (_Component) {
               'Fan Off Temperature:'
             ),
             ' ',
-            _react2.default.createElement('input', { size: '3', name: 'fanoff', value: this.state.fanoff }),
+            _react2.default.createElement('input', { size: '3', name: 'fanoff', value: this.state.fanOff }),
             ' ',
             vs('fanoff'),
             'deg',
