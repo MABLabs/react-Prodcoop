@@ -38637,14 +38637,14 @@ var SettingsForm = function (_Component) {
       //   var instance = axios.create({
       //       baseURL: 'http://localhost:8080/',
       //       timeout: 1000,
-      //       headers: { "Access-Control-Allow-Origin": "*" }
+      //       headers: { "Access-Control-Allow-Origin": "*" } 
       //   });
 
       _axios2.default.get(url);
 
       //Update props for sibling
       this.props.myData.latitude = parseFloat(this.state.latitude);
-      this.props.myData.longitude = parseIFloat(this.state.longitude);
+      this.props.myData.longitude = parseFloat(this.state.longitude);
       this.props.myData.dooropenOffset = parseInt(this.state.dooropenOffset);
       this.props.myData.doorcloseOffset = parseInt(this.state.doorcloseOffset);
       this.props.myData.lightonOffset = parseInt(this.state.lightonOffset);
