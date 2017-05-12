@@ -260,7 +260,7 @@ app.get('/api/current_temp/', function(req, res) {
 //var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;
 app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightoff/:heaton/:heatoff/:fanon/:fanoff', function(req, res){
 
-var err;
+//var err;
 //var isGood;
 //var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;
 //console.log('Latitude = ', latitude);
@@ -280,19 +280,22 @@ var err;
      }
       
 //      console.log('userData = ', userData);
+      let isGood = 'Successful write of parameter data';
       var data = JSON.stringify( userData, null, '\t' );
-      fs.writeFile('../src/data.json', data);
-      if (err) throw 'error writing file: ' + err;
+      fs.writeFile('../src/data.json', data, function(err) {
+//      if (err) throw 'error writing file: ' + err;
 
-      let isGood = 'Good';
-      if (err) {
-         isGood = err;
+//      let isGood = 'Successful write of parameter data';
+        if (err) {
+             isGood = err;
          }  
+      });
 
-//      console.log('data = ', data);
-      res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':data.length});
-      var data = JSON.stringify( {isGood} );
-      res.end(data);
+      console.log('Write data = ', data);
+      console.log(isGood);
+      res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':isGood.length});
+//      var data = JSON.stringify( {isGood} );
+      res.end(isGood);
 });
 
 //Send contents of data.json file
