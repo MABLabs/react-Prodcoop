@@ -117,8 +117,10 @@ setInterval(function() {
            //Somethings wrong, nake sure fan and heat turn off and report error
            rpio.write(fan, rpio.LOW);
            overrideFan = false;
+           console.log("Error with temperature prob - Fan Off");
            rpio.write(heat, rpio.LOW);
            overrideHeat = false;
+           console.log("Error with temperature prob - Heat Off");
 
            current_temp = err;
 	   console.log(err);
