@@ -111,38 +111,53 @@ setInterval(function() {
    }
 
    //Get current temperature
-   var current_temp = sensor.readSimpleF(2);
-   console.log(current_temp);
+   var current_temp; 
+   sensor.readSimpleF(2, (err, temp) => {
+	if (err) {
+           //Somethings wrong, nake sure fan and heat turn off and report error
+           rpio.write(fan, rpio.LOW);
+           overrideFan = false;
+           rpio.write(heat, rpio.LOW);
+           overrideHeat = false;
 
-   //Process Fan Status
-   if (!override) {
-     if (current_temp >= myData.fanOn) {
-       rpio.write(fan, rpio.HIGH);
-       overrideFan = true;
-       console.log("Fan On");
-     }
+           current_temp = err;
+	   console.log(err);
+	} 
+        else {
+           current_temp = temp;
+           console.log(current_temp);
 
-     if (current_temp <= myData.fanOff) {
-       rpio.write(fan, rpio.LOW);
-       overrideFan = false;
-       console.log("Fan Off");
-     }
-   }
+          //Process Fan Status
+          if (!override) {
+             if (current_temp >= myData.fanOn) {
+                rpio.write(fan, rpio.HIGH);
+                overrideFan = true;
+                console.log("Fan On");
+             }
+
+            if (current_temp <= myData.fanOff) {
+               rpio.write(fan, rpio.LOW);
+               overrideFan = false;
+               console.log("Fan Off");
+            }
+         }
      
-   //Process Heat Status
-   if (!override) {
-     if (current_temp <= myData.heatOn) {
-       rpio.write(heat, rpio.HIGH);
-       overrideHeat = true;
-       console.log("Heat On");
-     }
+        //Process Heat Status
+        if (!override) {
+           if (current_temp <= myData.heatOn) {
+             rpio.write(heat, rpio.HIGH);
+             overrideHeat = true;
+             console.log("Heat On");
+           }
 
-     if (current_temp >= myData.heatOff) { 
-       rpio.write(heat, rpio.LOW);
-       overrideHeat = false;
-       console.log("Heat Off");
+           if (current_temp >= myData.heatOff) { 
+             rpio.write(heat, rpio.LOW);
+             overrideHeat = false;
+             console.log("Heat Off");
+           }
+        }
      }
-   }
+   });
 }, 10000);
 
 function adjustTime(rHours, rMinutes, offset, ampm)
