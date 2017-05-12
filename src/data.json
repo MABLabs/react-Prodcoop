@@ -4,7 +4,7 @@
 	"dooropenOffset": -20,
 	"doorcloseOffset": 30,
 	"lightonOffset": 0,
-	"lightoffOffset": 30,
+	"lightoffOffset": 40,
 	"heatOn": 35,
 	"heatOff": 45,
 	"fanOn": 80,
