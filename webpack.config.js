@@ -44,12 +44,31 @@ const config = {
       },
 
       {
-          test: /\.(jpe?g|png|gif|svg)$/i, 
-          loaders: [ 
-                   'file-loader?hash=sha512&digest=hex&name=[hash].[ext]', 
-                   'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false' 
-          ] 
-       },
+          test: /\.(jpe?g|png|gif|svg)$/i,
+          use: [
+            'file-loader',
+            {
+              loader: 'image-webpack-loader',
+              query: {
+                bypassOnDebug: true,
+                gifsicle: {
+                  interlaced: false,
+                },
+                optipng: {
+                  optimizationLevel: 0
+                } 
+              }
+            }
+          ]
+      },
+ 
+//Pre webpack 2
+//          test: /\.(jpe?g|png|gif|svg)$/i, 
+//          loaders: [ 
+//                   'file-loader?hash=sha512&digest=hex&name=[hash].[ext]', 
+//                   'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false' 
+//          ] 
+//       },
 
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
