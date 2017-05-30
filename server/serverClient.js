@@ -17,14 +17,14 @@ var overrideFan = false;
 var overrideHeat = false;
 
 const SunCalc = require('suncalc');
-const sensor = require('ds18b20-raspi');
+const sensor = require('ds18b20-raspi'); //GPIO04 pin 7
 const rpio = require('rpio');
 
 //Set inmitial states for pin outputs
-const light = 12;
-const door  = 16;
-const heat  = 18;
-const fan   = 22;
+const light = 12; //GPIO18
+const door  = 16; //GPIO23
+const heat  = 18; //GPIO24
+const fan   = 22; //GPIO25
 rpio.open(light, rpio.OUTPUT, rpio.LOW);
 rpio.open(door,  rpio.OUTPUT, rpio.LOW);
 rpio.open(heat,  rpio.OUTPUT, rpio.LOW);

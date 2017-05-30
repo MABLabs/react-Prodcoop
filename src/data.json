@@ -1,8 +1,8 @@
 {
 	"latitude": 34.63416667,
 	"longitude": -92.31388889,
-	"dooropenOffset": -20,
-	"doorcloseOffset": 30,
+	"dooropenOffset": -10,
+	"doorcloseOffset": 20,
 	"lightonOffset": 0,
 	"lightoffOffset": 30,
 	"heatOn": 35,
