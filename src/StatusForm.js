@@ -143,7 +143,7 @@ render() {
   this.state.doorClose = this.adjustTime((times.sunset.getHours()-12), times.sunset.getMinutes(), myData.doorcloseOffset, 'PM');
   this.state.lighton = this.adjustTime(times.sunrise.getHours(), times.sunrise.getMinutes(), myData.lightonOffset, 'AM');
   this.state.lightoff = this.adjustTime((times.sunset.getHours()-12), times.sunset.getMinutes(), myData.lightoffOffset, 'PM');
-
+ 
   return <div>
            <h1>Coop Status</h1>
            <p><Time value={now} format="MM/DD/YYYY"/></p><Clock />

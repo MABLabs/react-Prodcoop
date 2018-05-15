@@ -255,6 +255,22 @@ app.get('/api/current_temp/', function(req, res) {
     });
 });
 
+app.get('/api/current_water/', function(req, res) {
+  
+    var water = 72;
+   // round temperature reading to 1 digit
+   //sensor.readSimpleF(2, (err, temp) => {
+   //  if (err) {
+	//	  console.log(err);
+	//  } else {
+	  console.log(`Water Level = ${water}`);
+      var names = JSON.stringify( water );
+      res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
+      res.end(names);
+//	  }
+//    });
+});
+
 //   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}`;
 // localhost:8081//api/myData/34.63416667/-92.31388889/-20/30/0/40/35/45/80/75
 //var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;

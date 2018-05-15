@@ -7,6 +7,7 @@ import logo from './RedroosterSmall.png';
 import './App.css';
 
 import StatusForm from './StatusForm.js';
+import WaterForm from './WaterForm.js';
 import SettingsForm from './SettingsForm.js';
 import OverideForm from './OverideForm.js';
 
@@ -53,6 +54,7 @@ class App extends Component {
     let activeForm = <div>The Form '{this.state.value}' not yet coded.</div>;
     switch (this.state.value) {
       case 'status':   activeForm = <StatusForm myData={ this.state.myData } />;   break;
+      case 'water': activeForm = <WaterForm />;   break;
       case 'settings': activeForm = <SettingsForm myData={ this.state.myData } />;   break;
       case 'overide':  activeForm = <OverideForm />;   break;
       default: console.log(this.state.value, ' has no matching form.');
@@ -69,6 +71,7 @@ class App extends Component {
         </p>
         <select value={this.state.value} onChange={this.handleChange}>
           <option value="status">Coop Status</option>
+          <option value="water">Coop Water</option>
           <option value="settings">Coop Settings</option>
           <option value="overide">Coop Override</option>
         </select>

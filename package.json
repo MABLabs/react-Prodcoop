@@ -19,6 +19,8 @@
     "babel-preset-latest": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "body-parser": "^1.17.1",
+    "d3-color": "^1.2.0",
+    "d3-interpolate": "^1.2.0",
     "ds18b20-raspi": "^0.2.5",
     "json-loader": "^0.5.4",
     "moment": "^2.18.0",
@@ -28,6 +30,7 @@
     "react-clock": "^1.0.5",
     "react-dom": "^15.5.4",
     "react-flexible-switch": "^0.6.0",
+    "react-liquid-gauge": "^1.2.4",
     "react-time": "^4.2.0",
     "rpio": "^0.9.16",
     "self-reload-json": "^0.3.0",
@@ -57,10 +60,10 @@
     "setup": "echo \"Read setup.md\" && exit 1",
     "_comment": "the next line switches SHOULD NOT be moved to devServer {} section of webpack.config.js -- it will not work, dont follow old documentation",
     "hotload": "webpack-dev-server --devtool eval-source --progress --colors --hot --inline --history-api-fallback",
-    "start-api": "cd server; nodemon server.js 8081 ",
+    "start-api": "cd server; nodemon serverClient.js 8081 ",
     "start": "npm run start-api && npm run hotload",
     "bundle": "webpack",
-    "start-prod": "cd server; sudo nodemon server.js"
+    "start-prod": "cd server; sudo nodemon serverClient.js 80"
   },
   "author": "Michael Beaudoin <Michael.Beaudoin@mablabs.com>",
   "license": "MAB Labs"
