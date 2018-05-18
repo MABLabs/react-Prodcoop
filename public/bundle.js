@@ -44996,7 +44996,7 @@ var WaterForm = function (_Component) {
         var _this = _possibleConstructorReturn(this, (WaterForm.__proto__ || Object.getPrototypeOf(WaterForm)).call(this, props));
 
         _this.state = {
-            value: 50
+            value: 0
         };
 
         (0, _reactAutobind2.default)(_this);
@@ -45042,9 +45042,22 @@ var WaterForm = function (_Component) {
             }
         }
     }, {
+        key: 'getWaterLevel',
+        value: function getWaterLevel() {
+            var _this3 = this;
+
+            //  this.setState({ value: Math.random() * 100 });
+            _axios2.default.get('/api/current_water/').then(function (response) {
+                _this3.setState({ 'value': response.data });
+                console.log('Water Level = ', _this3.state.value);
+            }).catch(function (error) {
+                _this3.setState({ 'value': error.message });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var radius = 200;
             var interpolate = (0, _d3Interpolate.interpolateRgb)('#dc143c', '#6495ed');
@@ -45125,7 +45138,7 @@ var WaterForm = function (_Component) {
                         fontFamily: 'Arial'
                     },
                     onClick: function onClick() {
-                        _this3.setState({ value: Math.random() * 100 });
+                        _this4.setState({ value: Math.random() * 100 });
                     }
                 }),
                 _react2.default.createElement(
@@ -45138,14 +45151,8 @@ var WaterForm = function (_Component) {
                     },
                     _react2.default.createElement(
                         'button',
-                        {
-                            type: 'button',
-                            className: 'btn btn-default btn-block',
-                            onClick: function onClick() {
-                                _this3.setState({ value: Math.random() * 100 });
-                            }
-                        },
-                        'Refresh'
+                        { type: 'button', onClick: this.getWaterLevel },
+                        'Refresh Page'
                     )
                 )
             );
@@ -45154,6 +45161,19 @@ var WaterForm = function (_Component) {
 
     return WaterForm;
 }(_react.Component);
+
+/*Old Button
+                    <button
+                        type="button"
+                        className="btn btn-default btn-block"
+                        onClick={() => {
+                            this.setState({ value: Math.random() * 100 });
+                        }}
+                    >
+                        Refresh
+                    </button>
+*/
+
 
 exports.default = WaterForm;
 

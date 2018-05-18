@@ -23,6 +23,7 @@
     "d3-interpolate": "^1.2.0",
     "ds18b20-raspi": "^0.2.5",
     "json-loader": "^0.5.4",
+    "mmm-usonic": "^2.5.3",
     "moment": "^2.18.0",
     "prop-types": "^15.5.9",
     "react": "^15.4.4",

@@ -10,7 +10,7 @@ class WaterForm extends Component {
       super(props);
 
       this.state = {
-          value:    50
+          value:    0
       }
 
       autoBind(this);
@@ -50,6 +50,15 @@ sleep(milliseconds) {
   }
 }
 
+getWaterLevel() {
+//  this.setState({ value: Math.random() * 100 });
+  axios.get('/api/current_water/')
+  .then((response) => { 
+     this.setState({'value': response.data}); 
+     console.log('Water Level = ', this.state.value);
+  })
+  .catch((error)   => { this.setState({'value': error.message}); });
+}
 
 render() {
         const radius = 200;
@@ -135,6 +144,14 @@ render() {
                         width: 120
                     }}
                 >
+                    <button type="button" onClick={this.getWaterLevel}>Refresh Page</button>
+                </div>
+            </div>
+        );
+    }
+}
+
+/*Old Button
                     <button
                         type="button"
                         className="btn btn-default btn-block"
@@ -144,10 +161,5 @@ render() {
                     >
                         Refresh
                     </button>
-                </div>
-            </div>
-        );
-    }
-}
-
+*/
 export default WaterForm;
