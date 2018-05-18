@@ -12,8 +12,8 @@ var myData = new SelfReloadJSON("../src/data.json");
 
 var usonic = require('mmm-usonic'); //radar for water level
 // Set Trigger and Ech pins for the HC-SR04
-const trig    = 23; //GPIO17;
-const echo    = 24; //GPIO27;
+const trig    = 11; //GPIO11;
+const echo    = 8; //GPIO08;
 const timeout = 450;
 var WaterSensor;
 // Initialize the HC-SR04
@@ -274,16 +274,17 @@ app.get('/api/current_temp/', function(req, res) {
 
 app.get('/api/current_water/', function(req, res) {
   
-    var water = Math.random() * 100;
+//    var water = Math.random() * 100;
 
-//    var water = WaterSensor();
+    var water = WaterSensor();
+    var waterL = (water / 10) * 100;
    // round temperature reading to 1 digit
    //sensor.readSimpleF(2, (err, temp) => {
    //  if (err) {
 	//	  console.log(err);
 	//  } else {
-	  console.log(`Water Level = ${water}`);
-      var names = JSON.stringify( water );
+	  console.log(`Water Level = ${waterL}`);
+      var names = JSON.stringify( waterL );
       res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
       res.end(names);
 //	  }
