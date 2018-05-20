@@ -12,8 +12,8 @@ var myData = new SelfReloadJSON("../src/data.json");
 
 var usonic = require('mmm-usonic'); //radar for water level
 // Set Trigger and Ech pins for the HC-SR04
-const trig    = 11; //GPIO11;
-const echo    = 8; //GPIO08;
+const trig    = 11; //GPIO11 pin23
+const echo    = 8; //GPIO08 pin24
 const timeout = 450;
 var WaterSensor;
 // Initialize the HC-SR04
@@ -41,14 +41,14 @@ const rpio = require('rpio');
 const light = 12; //GPIO18
 const door  = 16; //GPIO23
 const heat  = 18; //GPIO24
-const fan   = 22; //GPIO25
+const fan   = 22; //GPIO256
 rpio.open(light, rpio.OUTPUT, rpio.LOW);
 rpio.open(door,  rpio.OUTPUT, rpio.LOW);
 rpio.open(heat,  rpio.OUTPUT, rpio.LOW);
 rpio.open(fan,   rpio.OUTPUT, rpio.LOW);
 
 //var getFiles = require('./query.js').getFiles,
-//    ept = require('./mbsdata.js').MbsData;
+//    ept = require('./mbsd66ata.js').MbsData;
 
 var port = parseInt(process.argv[2] || '8081', 10);
 if (port < 1000)
@@ -277,8 +277,8 @@ app.get('/api/current_water/', function(req, res) {
 //    var water = Math.random() * 100;
     var bucket = 31.0;
     var fill = 5.0;
-    var water = WaterSensor();
-    console.log(`Sensor Level = ${water}`);
+//    var water = WaterSensor();
+//    console.log(`Sensor Level = ${water}`);
 
     const { spawn } = require('child_process');
     const pyProg = spawn('python',['./myhcsr04.py']);
