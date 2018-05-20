@@ -280,17 +280,11 @@ app.get('/api/current_water/', function(req, res) {
     var water = WaterSensor();
     console.log(`Sensor Level = ${water}`);
 
-    const { spawn } = require('child_process');
-    const pyProg = spawn('python',['./myhcsr04.py']);
-
-    pyProg.stdout.on('data', function(data) {
-
-    var waterL = ((bucket-data) / (bucket-fill)) * 100;
+    var waterL = ((bucket-water) / (bucket-fi) * 100;
     console.log(`Water Level = ${waterL}`);
     var names = JSON.stringify( waterL );
     res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
     res.end(names);
-  });
 });
 
 //   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}`;

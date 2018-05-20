@@ -61,7 +61,7 @@ getWaterLevel() {
 }
 
 render() {
-        const radius = 200;
+        const radius = 100;
         const interpolate = interpolateRgb('#dc143c', '#6495ed');
         const fillColor = interpolate(this.state.value / 100);
         const gradientStops = [

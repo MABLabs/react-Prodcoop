@@ -11,7 +11,7 @@ var print = function (distances) {
     process.stdout.cursorTo(0);
 
     if (distance < 0) {
-        process.stdout.write('Error: Measurement timeout.\n');
+        process.stdout.write('Distance = '+distance+' Error: Measurement timeout.\n');
     } else {
         process.stdout.write('Distance: ' + distance.toFixed(2) + ' cm');
     }
@@ -54,8 +54,8 @@ var askForInteger = function (name, defaultValue, callback) {
     });
 };
 
-askForInteger('Echo pin', 24, function (echoPin) {
-    askForInteger('Trigger pin', 23, function (triggerPin) {
+askForInteger('Echo pin', 8, function (echoPin) {
+    askForInteger('Trigger pin', 11, function (triggerPin) {
         askForInteger('Measurement timeout in µs', 750, function (timeout) {
             askForInteger('Measurement delay in ms', 60, function (delay) {
                 askForInteger('Measurements per sample', 5, function (rate) {

@@ -45059,7 +45059,7 @@ var WaterForm = function (_Component) {
         value: function render() {
             var _this4 = this;
 
-            var radius = 200;
+            var radius = 100;
             var interpolate = (0, _d3Interpolate.interpolateRgb)('#dc143c', '#6495ed');
             var fillColor = interpolate(this.state.value / 100);
             var gradientStops = [{
