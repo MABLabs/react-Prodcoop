@@ -215,12 +215,10 @@ app.get('/api/hello', function (req, res) {
 // Migrated from previous version of MbsNode
 // -----------------------------------------------------------------------------
 
-// http://ncsvmmbspreprod.nctr.fda.gov/query/files/05-01-2015/05-11-2015/*/M3
-// http://ncsvmmbspreprod.nctr.fda.gov/query/files/05-01-2015/05-11-2015/DIA/M3
 /*
 app.get('/api/query/files/:fromDate/:toDate/:otb/:subjects', function(req, res){
 
-    var files = getFiles('NCTR', req.params.fromDate, req.params.toDate, req.params.otb, req.params.subjects);
+    var files = getFiles('MABLABS', req.params.fromDate, req.params.toDate, req.params.otb, req.params.subjects);
     var names = JSON.stringify( files );
     res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
     res.end(names);
@@ -268,7 +266,7 @@ app.get('/api/current_temp/', function(req, res) {
       var names = JSON.stringify( temp );
       res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
       res.end(names);
-	  }
+6	  }
     });
 });
 
@@ -285,7 +283,16 @@ app.get('/api/current_water/', function(req, res) {
 
     pyProg.stdout.on('data', function(data) {
 
+    console.log('Sensor Reading = ${data}cm');
+
     var waterL = ((bucket-data) / (bucket-fill)) * 100;
+
+    if(waterL < 0.0)
+       waterL = 0.0;
+
+    if(waterL > 100.0)
+       waterL = 100.0;
+
     console.log(`Water Level = ${waterL}`);
     var names = JSON.stringify( waterL );
     res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':names.length});
