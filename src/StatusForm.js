@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-import Time from 'react-time'
+//import Time from 'react-time'
 import SunCalc from 'suncalc'
-import Clock from 'react-clock'
+//import Clock from 'react-clock'
+import Clock from 'react-live-clock'
 import axios from 'axios'
 //import myData from './data.json';
 
@@ -148,7 +149,7 @@ render() {
  
   return <div>
            <h1>Coop Status</h1>
-           <p><Time value={now} format="MM/DD/YYYY"/></p><Clock />
+           <Clock format={'ddd, MMMM Do, YYYY, h:mm:ss A'} ticking={true} />
              <div onChange={this.handleChange} >
              <div className="App-entry">
              <label>Current Temp:</label><b>{this.state.tempF}&deg;</b><br /><br />

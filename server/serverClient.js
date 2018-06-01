@@ -10,14 +10,14 @@ var moment = require('moment');
 var myData = new SelfReloadJSON("../src/data.json");
 //var myData = require("../src/data.json");
 
-var usonic = require('mmm-usonic'); //radar for water level
+//var usonic = require('mmm-usonic'); //radar for water level
 // Set Trigger and Ech pins for the HC-SR04
 const trig    = 11; //GPIO11 pin23
 const echo    = 8; //GPIO08 pin24
 const timeout = 450;
 var WaterSensor;
 // Initialize the HC-SR04
-
+/*
 usonic.init(function (error) {
     if (error) {
        console.log(error);
@@ -26,6 +26,7 @@ usonic.init(function (error) {
        WaterSensor = usonic.createSensor(echo, trig, timeout);
     }
 });
+*/
 
 var override = false;
 var overrideLight = false;
