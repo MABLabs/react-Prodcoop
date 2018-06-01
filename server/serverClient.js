@@ -273,8 +273,10 @@ app.get('/api/current_temp/', function(req, res) {
 app.get('/api/current_water/', function(req, res) {
   
 //    var water = Math.random() * 100;
-    var bucket = 31.0;
-    var fill = 5.0;
+    var bucket = myData.bucket;
+    var fill = myData.bucket-myData.fill;
+    console.log(`Bucket Size = ${bucket}`);
+    console.log(`Fill Line = ${fill}`);
 //    var water = WaterSensor();
 //    console.log(`Sensor Level = ${water}`);
 
@@ -283,7 +285,7 @@ app.get('/api/current_water/', function(req, res) {
 
     pyProg.stdout.on('data', function(data) {
 
-    console.log('Sensor Reading = ${data}cm');
+    console.log(`Sensor Reading = ${data}`);
 
     var waterL = ((bucket-data) / (bucket-fill)) * 100;
 
@@ -303,7 +305,7 @@ app.get('/api/current_water/', function(req, res) {
 //   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}`;
 // localhost:8081//api/myData/34.63416667/-92.31388889/-20/30/0/40/35/45/80/75
 //var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;
-app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightoff/:heaton/:heatoff/:fanon/:fanoff', function(req, res){
+app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightoff/:heaton/:heatoff/:fanon/:fanoff/:bucket/:fill', function(req, res){
 
 //var err;
 //var isGood;
@@ -321,7 +323,9 @@ app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightof
          heatOn: parseInt(req.params.heaton),
          heatOff: parseInt(req.params.heatoff),
          fanOn: parseInt(req.params.fanon),
-         fanOff: parseInt(req.params.fanoff)
+         fanOff: parseInt(req.params.fanoff),
+         bucket: parseInt(req.params.bucket),
+         fill: parseInt(req.params.fill)
      }
       
 //      console.log('userData = ', userData);

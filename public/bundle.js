@@ -44314,6 +44314,8 @@ var SettingsForm = function (_Component) {
       valid.heatoff = iPat.test(this.state.heatOff) ? '' : 'bad heat off - number only';
       valid.fanon = iPat.test(this.state.fanOn) ? '' : 'bad fan on - number only';
       valid.fanoff = iPat.test(this.state.fanOff) ? '' : 'bad fan off - number only';
+      valid.bucket = iPat.test(this.state.bucket) ? '' : 'bad bucket value - number only';
+      valid.fill = iPat.test(this.state.fill) ? '' : 'bad fill line value - number only';
 
       return valid;
     }
@@ -44342,10 +44344,12 @@ var SettingsForm = function (_Component) {
           heaton = this.state.heatOn,
           heatoff = this.state.heatOff,
           fanon = this.state.fanOn,
-          fanoff = this.state.fanOff;
+          fanoff = this.state.fanOff,
+          bucket = this.state.bucket,
+          fill = this.state.fill;
 
       //   var url = `/api/myData/${this.state.latitude}/${this.state.longitude}/${this.state.dooropenOffset}/${this.state.doorcloseOffset}/${this.state.lightonOffset}/${this.state.lightoffOffset}/${this.state.heatOn}/${this.state.heatOff}/${this.state.fanOn}/${this.state.fanOff}`;
-      var url = '/api/myData/' + latitude + '/' + longitude + '/' + dooropen + '/' + doorclose + '/' + lighton + '/' + lightoff + '/' + heaton + '/' + heatoff + '/' + fanon + '/' + fanoff;
+      var url = '/api/myData/' + latitude + '/' + longitude + '/' + dooropen + '/' + doorclose + '/' + lighton + '/' + lightoff + '/' + heaton + '/' + heatoff + '/' + fanon + '/' + fanoff + '/' + bucket + '/' + fill;
       console.log('URL = ', url);
 
       //   var instance = axios.create({
@@ -44367,6 +44371,8 @@ var SettingsForm = function (_Component) {
       this.props.myData.heatOff = parseInt(this.state.heatOff);
       this.props.myData.fanOn = parseInt(this.state.fanOn);
       this.props.myData.fanOff = parseInt(this.state.fanOff);
+      this.props.myData.bucket = parseInt(this.state.bucket);
+      this.props.myData.fill = parseInt(this.state.fill);
       //console.log('Props = ', this.props.myData);
     }
   }, {
@@ -44508,6 +44514,28 @@ var SettingsForm = function (_Component) {
             vs('fanoff'),
             'deg',
             _react2.default.createElement('br', null),
+            _react2.default.createElement('br', null),
+            _react2.default.createElement(
+              'label',
+              null,
+              'Water Bucket Height:'
+            ),
+            ' ',
+            _react2.default.createElement('input', { size: '3', name: 'bucket', value: this.state.bucket }),
+            ' ',
+            vs('bucket'),
+            'cm',
+            _react2.default.createElement(
+              'label',
+              null,
+              'Max Fill Line:'
+            ),
+            ' ',
+            _react2.default.createElement('input', { size: '3', name: 'fill', value: this.state.fill }),
+            ' ',
+            vs('fill'),
+            'cm',
+            _react2.default.createElement('br', null),
             _react2.default.createElement('br', null)
           ),
           _react2.default.createElement(
@@ -44583,7 +44611,9 @@ var myData = {
    "heatOn": 0,
    "heatOff": 0,
    "fanOn": 0,
-   "fanOff": 0
+   "fanOff": 0,
+   "bucket": 0,
+   "fill": 0
 };
 
 var StatusForm = function (_Component) {
@@ -45266,7 +45296,7 @@ exports = module.exports = __webpack_require__(165)(undefined);
 
 
 // module
-exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  animation: App-logo-spin infinite 20s linear;\n  height: 80px;\n}\n\n.App-header {\n  background-color: #229954;\n  height: 150px;\n  padding: 20px;\n  color: white;\n}\n\n.App-box {\n  float: right;\n  width: 300px;\n  height: 290px;\n  margin: 5px;\n  border: 1px solid rgba(0, 0, 0, .2);\n  background: white;\n}\n\n.App-display {\n  text-align: left;\n  position: relative;\n  color: black;\n  height: 250px;\n  padding: 20px;\n}\n\n.App-entry {\n  text-align: left;\n  position: relative;\n  color: black;\n  height: 350px;\n  padding: 20px;\n}\n\n.App-grade {\n  position: relative;\n  color: white;\n  height: 100vh;\n  background-color: #232C39;\n  background-image: linear-gradient(45deg, rgba(0, 216, 255, .5) 10%, rgba(0, 1, 127, .7));\n  font-family: Arial, Helvetica, Helvetica Neue, serif;\n  overflow-y: hidden;\n}\n\n.App-intro {\n  font-size: large;\n}\n\n.red-led {\n  width: 10px;\n  height: 10px;\n  background-color: red;\n  border-radius: 50%;\n  box-shadow: 0px 0px 6px 2px red;\n  \n  float:left;\n  margin-right: 10px;\n}\n\n.green-led {\n  width: 10px;\n  height: 10px;\n  background-color: green;\n  border-radius: 50%;\n  box-shadow: 0px 0px 6px 2px green;\n  \n  float:left;\n  margin-right: 10px;\n}\n\nvr {\n    display: block;\n    width:1px;\n    background-color:white;\n    position:absolute;\n    top:0;\n    bottom:0;\n    right:325px;\n}\n\nlabel{\n    display:inline-block;\n    width:100px;\n    padding-left:2em;\n    padding-right:2em;\n}\n\n@keyframes App-logo-spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n", ""]);
+exports.push([module.i, ".App {\n  text-align: center;\n}\n\n.App-logo {\n  animation: App-logo-spin infinite 20s linear;\n  height: 80px;\n}\n\n.App-header {\n  background-color: #229954;\n  height: 150px;\n  padding: 20px;\n  color: white;\n}\n\n.App-box {\n  float: right;\n  width: 300px;\n  height: 290px;\n  margin: 5px;\n  border: 1px solid rgba(0, 0, 0, .2);\n  background: white;\n}\n\n.App-display {\n  text-align: left;\n  position: relative;\n  color: black;\n  height: 250px;\n  padding: 20px;\n}\n\n.App-entry {\n  text-align: left;\n  position: relative;\n  color: black;\n  height: 400px;\n  padding: 20px;\n}\n\n.App-grade {\n  position: relative;\n  color: white;\n  height: 100vh;\n  background-color: #232C39;\n  background-image: linear-gradient(45deg, rgba(0, 216, 255, .5) 10%, rgba(0, 1, 127, .7));\n  font-family: Arial, Helvetica, Helvetica Neue, serif;\n  overflow-y: hidden;\n}\n\n.App-intro {\n  font-size: large;\n}\n\n.red-led {\n  width: 10px;\n  height: 10px;\n  background-color: red;\n  border-radius: 50%;\n  box-shadow: 0px 0px 6px 2px red;\n  \n  float:left;\n  margin-right: 10px;\n}\n\n.green-led {\n  width: 10px;\n  height: 10px;\n  background-color: green;\n  border-radius: 50%;\n  box-shadow: 0px 0px 6px 2px green;\n  \n  float:left;\n  margin-right: 10px;\n}\n\nvr {\n    display: block;\n    width:1px;\n    background-color:white;\n    position:absolute;\n    top:0;\n    bottom:0;\n    right:325px;\n}\n\nlabel{\n    display:inline-block;\n    width:100px;\n    padding-left:2em;\n    padding-right:2em;\n}\n\n@keyframes App-logo-spin {\n  from { transform: rotate(0deg); }\n  to { transform: rotate(360deg); }\n}\n", ""]);
 
 // exports
 

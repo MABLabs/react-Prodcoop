@@ -59,6 +59,8 @@ checkValid() {
         valid.heatoff      = iPat.test(this.state.heatOff) ? '' : 'bad heat off - number only';
         valid.fanon        = iPat.test(this.state.fanOn) ? '' : 'bad fan on - number only';
         valid.fanoff       = iPat.test(this.state.fanOff) ? '' : 'bad fan off - number only';
+        valid.bucket       = iPat.test(this.state.bucket) ? '' : 'bad bucket value - number only';
+        valid.fill         = iPat.test(this.state.fill) ? '' : 'bad fill line value - number only';
 
         return valid;
 }
@@ -85,10 +87,12 @@ saveData() {
          heaton    = this.state.heatOn,
          heatoff   = this.state.heatOff,
          fanon     = this.state.fanOn,
-         fanoff    = this.state.fanOff;
+         fanoff    = this.state.fanOff,
+         bucket    = this.state.bucket,
+         fill      = this.state.fill;
 
 //   var url = `/api/myData/${this.state.latitude}/${this.state.longitude}/${this.state.dooropenOffset}/${this.state.doorcloseOffset}/${this.state.lightonOffset}/${this.state.lightoffOffset}/${this.state.heatOn}/${this.state.heatOff}/${this.state.fanOn}/${this.state.fanOff}`;
-   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}`;
+   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}/${bucket}/${fill}`;
    console.log('URL = ', url);
 
 //   var instance = axios.create({
@@ -110,6 +114,8 @@ saveData() {
    this.props.myData.heatOff = parseInt(this.state.heatOff);
    this.props.myData.fanOn = parseInt(this.state.fanOn);
    this.props.myData.fanOff = parseInt(this.state.fanOff);
+   this.props.myData.bucket = parseInt(this.state.bucket);
+   this.props.myData.fill = parseInt(this.state.fill);
    //console.log('Props = ', this.props.myData);
 }
 
@@ -135,6 +141,8 @@ return <div>
            <label>Heat Off Temperature:</label> <input  size="3" name="heatOff" value={this.state.heatOff} /> {vs('heatoff')}deg<br /><br />
            <label>Fan On Temperature:</label> <input  size="3" name="fanOn" value={this.state.fanOn} /> {vs('fanon')}deg
            <label>Fan Off Temperature:</label> <input  size="3" name="fanOff" value={this.state.fanOff} /> {vs('fanoff')}deg<br /><br />
+           <label>Water Bucket Height:</label> <input  size="3" name="bucket" value={this.state.bucket} /> {vs('bucket')}cm
+           <label>Max Fill Line:</label> <input  size="3" name="fill" value={this.state.fill} /> {vs('fill')}cm<br /><br />
            </div>
          <button type="button" onClick={this.saveData}>Save and Update</button>&nbsp;
          </div>

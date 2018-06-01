@@ -16,7 +16,9 @@ var myData = {
 	"heatOn": 0,
 	"heatOff": 0,
 	"fanOn": 0,
-	"fanOff": 0
+	"fanOff": 0,
+    "bucket": 0,
+    "fill": 0
 }
 
 class StatusForm extends Component {

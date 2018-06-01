@@ -8,5 +8,7 @@
 	"heatOn": 35,
 	"heatOff": 45,
 	"fanOn": 80,
-	"fanOff": 75
+	"fanOff": 75,
+	"bucket": 31,
+	"fill": 26
 }
