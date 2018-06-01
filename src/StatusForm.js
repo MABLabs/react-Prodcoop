@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
-//import Time from 'react-time'
 import SunCalc from 'suncalc'
-//import Clock from 'react-clock'
 import Clock from 'react-live-clock'
 import axios from 'axios'
-//import myData from './data.json';
 
 var myData = {
 	"latitude": 0,

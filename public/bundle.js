@@ -32457,8 +32457,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//import logo from './logo.svg';
-
 
 var App = function (_Component) {
   _inherits(App, _Component);
@@ -32496,8 +32494,6 @@ var App = function (_Component) {
 
       _axios2.default.get('/api/current_parms/').then(function (response) {
         _this2.setState({ 'myData': response.data, 'show': true });
-        //console.log('App.js myData = ', this.state.myData);
-        //console.log('show = ', this.state.show);
       }).catch(function (error) {
         _this2.setState({ 'myData': error.message });console.log('Error in App,js on parm call = ', _this2.state.myData);
       });
@@ -33546,12 +33542,6 @@ var OverideForm = function (_Component) {
 
       var valid = {};
       //            valid.experiment     = iPat.test(this.state.experiment) ? '' : 'bad experiment - number only';
-      //            valid.btest       = iPat.test(this.state.btest) ? '' : 'bad test - number only';
-      //            valid.bfirst       = iPat.test(this.state.bfirst) ? '' : 'bad first cage - number only';
-      //            valid.blast       = iPat.test(this.state.blast) ? '' : 'bad last cage - number only';
-      //            valid.piname =  sPat.test(this.state.piname) ? '' : 'bad PI name - no numbers allowed';
-      //            valid.piext     = iPat.test(this.state.piext) ? '' : 'bad PI extension - number only';
-      //            valid.scode      = siPat.test(this.state.scode) ? '' : 'bad strain code - no spaces allowed';
 
       return valid;
     }
@@ -33792,8 +33782,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-//import myData from './data.json';
-
 var SettingsForm = function (_Component) {
   _inherits(SettingsForm, _Component);
 
@@ -33805,46 +33793,15 @@ var SettingsForm = function (_Component) {
     (0, _reactAutobind2.default)(_this);
 
     _this.state = _this.props.myData;
-    /*      this.state = 
-          {
-            latitude: myData.latitude,
-            longitude: myData.longitude,
-            dooropen: myData.dooropenOffset,
-            doorclose: myData.doorcloseOffset,
-            lighton: myData.lightonOffset,
-            lightoff: myData.lightoffOffset,
-            heaton: myData.heatOn,
-            heatoff: myData.heatOff,
-            fanon: myData.fanOn,
-            fanoff: myData.fanOff
-          };
-          this.state = {
-            latitude: 0,
-            longitude: 0,
-            dooropenOffset: 0,
-            doorcloseOffset: 0,
-            lightonOffset: 0,
-            lightoffOffset: 0,
-            heatOn: 0,
-            heatOff: 0,
-            fanOn: 0,
-            fanOff: 0
-          };*/
     return _this;
   }
-  /*
-  componentDidMount() {
-    this.state = this.props.myData;
-  }
-  */
-
 
   _createClass(SettingsForm, [{
     key: 'checkValid',
     value: function checkValid() {
       //        var sPat = /^[A-Za-z ]*$/;
       //        var siPat = /^[A-Za-z0-9//]*$/;
-      //var iPat = /^\d+$/;
+      //        var iPat = /^\d+$/;
       var iPat = /^-{0,1}\d*\.{0,1}\d+$/;
 
       var valid = {};
@@ -33878,7 +33835,7 @@ var SettingsForm = function (_Component) {
     key: 'saveData',
     value: function saveData() {
 
-      //   const [latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff] = [...this.state];
+      //   const [latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff, bucket, fill] = [...this.state];
       var latitude = this.state.latitude,
           longitude = this.state.longitude,
           dooropen = this.state.dooropenOffset,
@@ -33892,15 +33849,8 @@ var SettingsForm = function (_Component) {
           bucket = this.state.bucket,
           fill = this.state.fill;
 
-      //   var url = `/api/myData/${this.state.latitude}/${this.state.longitude}/${this.state.dooropenOffset}/${this.state.doorcloseOffset}/${this.state.lightonOffset}/${this.state.lightoffOffset}/${this.state.heatOn}/${this.state.heatOff}/${this.state.fanOn}/${this.state.fanOff}`;
       var url = '/api/myData/' + latitude + '/' + longitude + '/' + dooropen + '/' + doorclose + '/' + lighton + '/' + lightoff + '/' + heaton + '/' + heatoff + '/' + fanon + '/' + fanoff + '/' + bucket + '/' + fill;
       console.log('URL = ', url);
-
-      //   var instance = axios.create({
-      //       baseURL: 'http://localhost:8080/',
-      //       timeout: 1000,
-      //       headers: { "Access-Control-Allow-Origin": "*" } 
-      //   });
 
       _axios2.default.get(url);
 
@@ -33917,7 +33867,6 @@ var SettingsForm = function (_Component) {
       this.props.myData.fanOff = parseInt(this.state.fanOff);
       this.props.myData.bucket = parseInt(this.state.bucket);
       this.props.myData.fill = parseInt(this.state.fill);
-      //console.log('Props = ', this.props.myData);
     }
   }, {
     key: 'render',
@@ -33932,8 +33881,6 @@ var SettingsForm = function (_Component) {
           '*'
         );
       };
-
-      //console.log('render state = ', this.state);
 
       return _react2.default.createElement(
         'div',
@@ -34138,12 +34085,6 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-//import Time from 'react-time'
-
-//import Clock from 'react-clock'
-
-
-//import myData from './data.json';
 
 var myData = {
    "latitude": 0,

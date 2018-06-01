@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
 import autoBind from 'react-autobind';
-//import logo from './logo.svg';
 import logo from './RedroosterSmall.png';
 
 import './App.css';
@@ -39,8 +38,6 @@ class App extends Component {
      axios.get('/api/current_parms/')
     .then((response) => { 
         this.setState({'myData': response.data, 'show': true});
-        //console.log('App.js myData = ', this.state.myData);
-        //console.log('show = ', this.state.show);
      })
      .catch((error)   => { this.setState({'myData': error.message}); console.log('Error in App,js on parm call = ', this.state.myData) });
   }

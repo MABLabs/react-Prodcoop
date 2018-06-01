@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import autoBind from 'react-autobind';
 import axios from 'axios';
-//import myData from './data.json';
 
 class SettingsForm extends Component {
 
@@ -11,41 +10,12 @@ class SettingsForm extends Component {
       autoBind(this);
 
        this.state = this.props.myData;
-/*      this.state = 
-      {
-        latitude: myData.latitude,
-        longitude: myData.longitude,
-        dooropen: myData.dooropenOffset,
-        doorclose: myData.doorcloseOffset,
-        lighton: myData.lightonOffset,
-        lightoff: myData.lightoffOffset,
-        heaton: myData.heatOn,
-        heatoff: myData.heatOff,
-        fanon: myData.fanOn,
-        fanoff: myData.fanOff
-      };
-      this.state = {
-        latitude: 0,
-        longitude: 0,
-        dooropenOffset: 0,
-        doorcloseOffset: 0,
-        lightonOffset: 0,
-        lightoffOffset: 0,
-        heatOn: 0,
-        heatOff: 0,
-        fanOn: 0,
-        fanOff: 0
-      };*/
 }
-/*
-componentDidMount() {
-  this.state = this.props.myData;
-}
-*/
+
 checkValid() {
 //        var sPat = /^[A-Za-z ]*$/;
 //        var siPat = /^[A-Za-z0-9//]*$/;
-        //var iPat = /^\d+$/;
+//        var iPat = /^\d+$/;
         var iPat = /^-{0,1}\d*\.{0,1}\d+$/;
 
         var valid = {};
@@ -77,7 +47,7 @@ handleChange(event) {
 
 saveData() {
 
-//   const [latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff] = [...this.state];
+//   const [latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff, bucket, fill] = [...this.state];
    const latitude  = this.state.latitude, 
          longitude = this.state.longitude, 
          dooropen  = this.state.dooropenOffset,
@@ -91,16 +61,9 @@ saveData() {
          bucket    = this.state.bucket,
          fill      = this.state.fill;
 
-//   var url = `/api/myData/${this.state.latitude}/${this.state.longitude}/${this.state.dooropenOffset}/${this.state.doorcloseOffset}/${this.state.lightonOffset}/${this.state.lightoffOffset}/${this.state.heatOn}/${this.state.heatOff}/${this.state.fanOn}/${this.state.fanOff}`;
    var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}/${bucket}/${fill}`;
    console.log('URL = ', url);
 
-//   var instance = axios.create({
-//       baseURL: 'http://localhost:8080/',
-//       timeout: 1000,
-//       headers: { "Access-Control-Allow-Origin": "*" } 
-//   });
-      
    axios.get(url);
 
    //Update props for sibling
@@ -116,7 +79,6 @@ saveData() {
    this.props.myData.fanOff = parseInt(this.state.fanOff);
    this.props.myData.bucket = parseInt(this.state.bucket);
    this.props.myData.fill = parseInt(this.state.fill);
-   //console.log('Props = ', this.props.myData);
 }
 
 render() {
@@ -124,8 +86,6 @@ render() {
 var red = {color: 'rgb(255,0,0)', fontSize: '1.6em'};
 var valid = this.checkValid();
 var vs = (name) => (valid[name].length === 0) ? <span></span>: <span style={red} title={valid[name]}>*</span>;
-
-//console.log('render state = ', this.state);
 
 return <div>
          <h1>Coop Settings</h1>

@@ -31,12 +31,6 @@ checkValid() {
 
         var valid = {};
 //            valid.experiment     = iPat.test(this.state.experiment) ? '' : 'bad experiment - number only';
-//            valid.btest       = iPat.test(this.state.btest) ? '' : 'bad test - number only';
-//            valid.bfirst       = iPat.test(this.state.bfirst) ? '' : 'bad first cage - number only';
-//            valid.blast       = iPat.test(this.state.blast) ? '' : 'bad last cage - number only';
-//            valid.piname =  sPat.test(this.state.piname) ? '' : 'bad PI name - no numbers allowed';
-//            valid.piext     = iPat.test(this.state.piext) ? '' : 'bad PI extension - number only';
-//            valid.scode      = siPat.test(this.state.scode) ? '' : 'bad strain code - no spaces allowed';
 
         return valid;
 }
