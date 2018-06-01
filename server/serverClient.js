@@ -8,8 +8,8 @@ var express = require('express'),
 var SelfReloadJSON = require('self-reload-json');
 var moment = require('moment');
 var myData = new SelfReloadJSON("../src/data.json");
-//var myData = require("../src/data.json");
 
+/* Used for reactjs library mmm-usonic (does not work on pi zero
 //var usonic = require('mmm-usonic'); //radar for water level
 // Set Trigger and Ech pins for the HC-SR04
 const trig    = 11; //GPIO11 pin23
@@ -17,7 +17,7 @@ const echo    = 8; //GPIO08 pin24
 const timeout = 450;
 var WaterSensor;
 // Initialize the HC-SR04
-/*
+
 usonic.init(function (error) {
     if (error) {
        console.log(error);
@@ -48,9 +48,6 @@ rpio.open(door,  rpio.OUTPUT, rpio.LOW);
 rpio.open(heat,  rpio.OUTPUT, rpio.LOW);
 rpio.open(fan,   rpio.OUTPUT, rpio.LOW);
 
-//var getFiles = require('./query.js').getFiles,
-//    ept = require('./mbsd66ata.js').MbsData;
-
 var port = parseInt(process.argv[2] || '8081', 10);
 if (port < 1000)
    console.log('Operating on Port '+port+' requires priveledge');
@@ -75,18 +72,6 @@ server.listen(app.get('port'), function(){
 //Process gpio status
 setInterval(function() {
 
-//   sensor.readSimpleF(2, (err, temp) => {
-//	  if (err) {
-//		  console.log(err);
-//	  } else {
-//      current_temp = temp;
-//	  console.log(`${temp} degF`);
-//      }
-//   });
-
-//    var lat = parseFloat((myData.latitude).toFixed(4));
-//    var long = parseFloat((myData.longitude).toFixed(4));
-
     var times = SunCalc.getTimes(new Date(), myData.latitude, myData.longitude);
 
    //Process Light
@@ -97,8 +82,6 @@ setInterval(function() {
 
    var nowTime = moment(new Date()).format('HH:mm');
    console.log(nowTime);
-//   console.log("on = ", lighton);
-//   console.log("off = ", lightoff);
 
    //Process light status
    if (!override) {
@@ -213,7 +196,7 @@ app.get('/api/hello', function (req, res) {
 });
 
 // -----------------------------------------------------------------------------
-// Migrated from previous version of MbsNode
+// Code for all the get requests
 // -----------------------------------------------------------------------------
 
 /*
@@ -239,6 +222,7 @@ app.post('/api/query/endpt/', function(req, res){
 
     ept.getEndpt(req.body.filename, ids, getOneAnswer);
 });*/
+
 app.get('/api/current_status/', function(req, res) {
 
      const statusData = {
@@ -273,13 +257,10 @@ app.get('/api/current_temp/', function(req, res) {
 
 app.get('/api/current_water/', function(req, res) {
   
-//    var water = Math.random() * 100;
     var bucket = myData.bucket;
     var fill = myData.bucket-myData.fill;
     console.log(`Bucket Size = ${bucket}`);
     console.log(`Fill Line = ${fill}`);
-//    var water = WaterSensor();
-//    console.log(`Sensor Level = ${water}`);
 
     const { spawn } = require('child_process');
     const pyProg = spawn('python',['./myhcsr04.py']);
@@ -303,17 +284,11 @@ app.get('/api/current_water/', function(req, res) {
   });
 });
 
-//   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}`;
-// localhost:8081//api/myData/34.63416667/-92.31388889/-20/30/0/40/35/45/80/75
-//var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;
+//   var url = `/api/myData/${latitude}/${longitude}/${dooropen}/${doorclose}/${lighton}/${lightoff}/${heaton}/${heatoff}/${fanon}/${fanoff}/${bucket}/${fill}`;
+// localhost:8081//api/myData/34.63416667/-92.31388889/-20/30/0/40/35/45/80/75/31/26
+//var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff, bucket, fill;
 app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightoff/:heaton/:heatoff/:fanon/:fanoff/:bucket/:fill', function(req, res){
 
-//var err;
-//var isGood;
-//var latitude, longitude, dooropen, doorclose, lighton, lightoff, heaton, heatoff, fanon, fanoff;
-//console.log('Latitude = ', latitude);
-//var latitude = req.params.latitude;
-  
      const userData = {
          latitude: parseFloat(req.params.latitude),
          longitude: parseFloat(req.params.longitude),
@@ -329,11 +304,9 @@ app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightof
          fill: parseInt(req.params.fill)
      }
       
-//      console.log('userData = ', userData);
       let isGood = 'Successful write of parameter data';
       var data = JSON.stringify( userData, null, '\t' );
       fs.writeFile('../src/data.json', data, function(err) {
-//      if (err) throw 'error writing file: ' + err;
 
 //      let isGood = 'Successful write of parameter data';
         if (err) {
@@ -344,7 +317,6 @@ app.get('/api/myData/:latitude/:longitude/:dooropen/:doorclose/:lighton/:lightof
       console.log('Write data = ', data);
       console.log(isGood);
       res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':isGood.length});
-//      var data = JSON.stringify( {isGood} );
       res.end(isGood);
 });
 
@@ -357,8 +329,6 @@ app.get('/api/current_parms/', function(req, res) {
 		  console.log(err);
 	  } else {
 	  console.log(data);
-      //obj = JSON.parse( data );
-      //console.log(obj);
       res.writeHead(200, {'Content-Type': 'application/json', 'Content-Length':data.length});
       res.end(data);
 	  }
