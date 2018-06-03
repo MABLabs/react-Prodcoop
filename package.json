@@ -27,12 +27,10 @@
     "prop-types": "^15.5.9",
     "react": "^15.4.4",
     "react-autobind": "^1.0.6",
-    "react-clock": "^1.0.5",
     "react-dom": "^15.5.4",
     "react-flexible-switch": "^0.6.0",
     "react-liquid-gauge": "^1.2.4",
     "react-live-clock": "^2.0.3",
-    "react-time": "^4.2.0",
     "rpio": "^0.9.16",
     "self-reload-json": "^0.3.0",
     "suncalc": "^1.8.0"
