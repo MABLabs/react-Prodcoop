@@ -42,7 +42,7 @@ const rpio = require('rpio');
 const light = 12; //GPIO18
 const door  = 16; //GPIO23
 const heat  = 18; //GPIO24
-const fan   = 22; //GPIO256
+const fan   = 22; //GPIO25
 rpio.open(light, rpio.OUTPUT, rpio.LOW);
 rpio.open(door,  rpio.OUTPUT, rpio.LOW);
 rpio.open(heat,  rpio.OUTPUT, rpio.LOW);
