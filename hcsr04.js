@@ -40,4 +40,4 @@ distance = pulse_duration * 17150
 distance = distance.toFixed(2);
 
 console.log('Distance = ', distance);
-console.log(((31-(distance-5))/31)*100);
+console.log(((31-distance) / (31-5)) * 100);
