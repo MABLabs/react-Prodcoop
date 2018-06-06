@@ -33,8 +33,7 @@
     "react-live-clock": "^2.0.3",
     "rpio": "^0.9.16",
     "self-reload-json": "^0.3.0",
-    "suncalc": "^1.8.0",
-    "time": "^0.12.0"
+    "suncalc": "^1.8.0"
   },
   "devDependencies": {
     "babel-core": "6.24.1",
